@@ -30,6 +30,13 @@
  *
  **/
 
+$Messages=array(); // initialize messages array
+
+error_reporting(-1);
+ini_set('html_errors',true);
+ini_set('docref_root','http://www.php.net/manual/en/');
+ini_set('display_errors',true);
+ini_set('display_startup_errors',true);
 
 define('APP_ROOT', dirname(__FILE__).DIRECTORY_SEPARATOR);
 
@@ -41,5 +48,8 @@ define('APP_URL',
 	((isset($_SERVER['SCRIPT_NAME'])) ? dirname($_SERVER['SCRIPT_NAME']) . '/' : '')
 	);
 
+require_once('libs/Smarty.class.php');
+$smarty = new Smarty;
+$smarty->configLoad('simplegallery.conf');
 
 

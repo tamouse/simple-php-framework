@@ -1,0 +1,1 @@
+{config_load "simplegallery.conf"}<div class="footer">Copyright &copy; {#app_copyright_startyear#} {#app_copyright_owner#}</div>

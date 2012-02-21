@@ -1,0 +1,1 @@
+{config_load "simplegallery.conf"}<h1 class="heading">{#app_name#} - {#page_title#}</h1>

@@ -1,5 +1,4 @@
-<?php
-/*
+{*
  # ***** BEGIN LICENSE BLOCK *****
  # Copyright (C) 2012 Tamara Temple Web Development
  # 
@@ -16,19 +15,16 @@
  # You should have received a copy of the GNU General Public License
  # along with this program.  If not, see <http://www.gnu.org/licenses/>.
  # 
- # ***** END LICENSE BLOCK ***** */
-
-/**
- * index - default dispatch and control for simplegallery
+ # ***** END LICENSE BLOCK ***** *}{**   
+ * messages - sub-template to display messages from the application
  *
  * @author Tamara Temple tamara@tamaratemple.com
  * @version isoD
  * @copyright 2012 Tamara Temple Web Development
- * @package simplegallery
- **/
+ * @license license
+ * @package default
+ *
+**}<div class="messages"><ul>{foreach from=$messages item=message name=messageloop}
+<li>{$message}</li>
+{/foreach}</ul></div>
 
-
-require_once('config.inc.php');
-$smarty->configLoad('simplegallery.conf','Index');
-$smarty->assign('messages',$Messages);
-$smarty->display('default.tpl');
