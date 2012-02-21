@@ -56,7 +56,6 @@ function display($template)
 function get_directories($start=".",$nodot=true)
 {
 	global $Messages, $Errors;
-	$Messages[]='<span class="debug">$start='.$start.'</span>';
 	
 	if (!is_dir($start)) {
 		$Errors[] = "$start is not a directory!";

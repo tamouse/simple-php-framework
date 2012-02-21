@@ -64,8 +64,8 @@ class TestMiscFunctions extends UnitTestCase {
 		$this->assertFalse(in_array(".",$dirs));
 		$this->assertFalse(in_array("..",$dirs));
 		$this->assertFalse(in_array(basename(__FILE__),$dirs));
-		echo "<h3>directories:</h3><ul>".implode("<li>",$dirs)."</ul>";
-		echo "<ul>".implode("<li>",$Messages)."</ul>";
+		echo "<h3>directories:</h3><ul><li>".implode("<li>",$dirs)."</ul>";
+		echo "<ul><li>".implode("<li>",$Messages)."</ul>";
 	}
 	function testGetDirectoriesCWD2() {
 		global $Messages, $Errors;
@@ -76,8 +76,8 @@ class TestMiscFunctions extends UnitTestCase {
 		$this->assertFalse(in_array(".",$dirs));
 		$this->assertFalse(in_array("..",$dirs));
 		$this->assertFalse(in_array("basename(__FILE__)",$dirs));
-		echo "<h3>directories:</h3><ul>".implode("<li>",$dirs)."</ul>";
-		echo "<ul>".implode("<li>",$Messages)."</ul>";
+		echo "<h3>directories:</h3><ul><li>".implode("<li>",$dirs)."</ul>";
+		echo "<ul><li>".implode("<li>",$Messages)."</ul>";
 	}
 	function testGetDirectoriesParent() {
 		global $Messages, $Errors;
@@ -88,12 +88,40 @@ class TestMiscFunctions extends UnitTestCase {
 		$this->assertFalse(in_array(".",$dirs));
 		$this->assertFalse(in_array("..",$dirs));
 		$this->assertFalse(in_array("index.php",$dirs));
-		echo "<h3>directories:</h3><ul>".implode("<li>",$dirs)."</ul>";
-		echo "<ul>".implode("<li>",$Messages)."</ul>";
+		echo "<h3>directories:</h3><ul><li>".implode("<li>",$dirs)."</ul>";
+		echo "<ul><li>".implode("<li>",$Messages)."</ul>";
+	}
+	function testGetDirectoriesAppRoot() {
+		global $Messages, $Errors;
+		$this->assertTrue(function_exists("get_directories"));
+		$dirs = get_directories(APP_ROOT);
+		$this->assertTrue(is_array($dirs));
+		$this->assertTrue(in_array("configs",$dirs));
+		$this->assertFalse(in_array(".",$dirs));
+		$this->assertFalse(in_array("..",$dirs));
+		$this->assertFalse(in_array("index.php",$dirs));
+		echo "<h3>directories:</h3><ul><li>".implode("<li>",$dirs)."</ul>";
+		echo "<ul><li>".implode("<li>",$Messages)."</ul>";
+	}
+	function testGetDirectoriesAppRootWithDots() {
+		global $Messages, $Errors;
+		$this->assertTrue(function_exists("get_directories"));
+		$dirs = get_directories(APP_ROOT,false);
+		$this->assertTrue(is_array($dirs));
+		$this->assertTrue(in_array(".git",$dirs));
+		$this->assertTrue(in_array(".",$dirs));
+		$this->assertTrue(in_array("..",$dirs));
+		$this->assertFalse(in_array("index.php",$dirs));
+		echo "<h3>directories:</h3><ul><li>".implode("<li>",$dirs)."</ul>";
+		echo "<ul><li>".implode("<li>",$Messages)."</ul>";
 	}
 	function testIsDir() {
 		$this->assertTrue(is_dir(dirname(__FILE__)));
 		$this->assertTrue(is_dir(APP_ROOT));
 		$this->assertTrue(is_dir(APP_ROOT.'/configs'));
+	}
+	function testGetFilesExists() {
+		global $Messages, $Errors;
+		$this->assertTrue(function_exists("get_files"));
 	}
 }
