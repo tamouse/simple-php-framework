@@ -17,18 +17,30 @@
  # along with this program.  If not, see <http://www.gnu.org/licenses/>.
  # 
  # ***** END LICENSE BLOCK ***** */
-
 /**
- * index - default dispatch and control for simplegallery
+ * miscfunctions - miscellaneous functions that don't really go anywhere else
  *
  * @author Tamara Temple tamara@tamaratemple.com
- * @version isoD
+ * @version \$Id\$
  * @copyright 2012 Tamara Temple Web Development
- * @package simplegallery
+ * @package default
  **/
 
 
-require_once('config.inc.php');
-require_once('miscfunctions.php');
+/**
+ * gather up the necessary info, pass it to smarty and then call smarty to display the template
+ *
+ * @return void
+ * @param string $template - name of template to display
+ * @global object $smarty
+ * @author Tamara Temple
+ **/
+function display($template)
+{
+	global $smarty,$Messages,$Errors;
 
-display("default");
+	$smarty->configLoad(SMARTYCONFIGFILE,ucfirst($template));
+	$smarty->assign('messages',(isset($Messages))?$Messages:array());
+	$smarty->assign('errors',(isset($Errors))?$Errors:array());
+	$smarty->display($template.".tpl");
+}

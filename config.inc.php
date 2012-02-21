@@ -30,7 +30,8 @@
  *
  **/
 
-$Messages=array(); // initialize messages array
+$GLOBALS['Messages']=array(); // initialize messages array
+$GLOBALS['Errors']=array(); // initialize errors array
 
 error_reporting(-1);
 ini_set('html_errors',true);
@@ -49,7 +50,13 @@ define('APP_URL',
 	);
 
 require_once('libs/Smarty.class.php');
-$smarty = new Smarty;
-$smarty->configLoad('simplegallery.conf');
+$GLOBALS['smarty'] = new Smarty;
+$GLOBALS['smarty']->setTemplateDir(APP_ROOT.'templates')
+       ->setConfigDir(APP_ROOT.'configs')
+       ->setCompileDir(APP_ROOT.'templates_c')
+       ->setCacheDir(APP_ROOT.'cache');
+
+define('SMARTYCONFIGFILE', 'simplegallery.conf');
+
 
 

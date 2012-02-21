@@ -16,7 +16,7 @@
  # along with this program.  If not, see <http://www.gnu.org/licenses/>.
  # 
  # ***** END LICENSE BLOCK ***** *}{**   
- * messages - sub-template to display messages from the application
+ * messages - sub-template to display messages and errors from the application
  *
  * @author Tamara Temple tamara@tamaratemple.com
  * @version isoD
@@ -24,7 +24,16 @@
  * @license license
  * @package default
  *
-**}<div class="messages"><ul>{foreach from=$messages item=message name=messageloop}
-<li>{$message}</li>
-{/foreach}</ul></div>
+**}
+
+<div class="errors">
+	<ul>{foreach from=$errors item=error name=errorloop}
+		<li>{$error}</li>
+{/foreach}</ul>
+</div>
+<div class="messages">
+	<ul>{foreach from=$messages item=message name=messageloop}
+		<li>{$message}</li>
+{/foreach}</ul>
+</div>
 
