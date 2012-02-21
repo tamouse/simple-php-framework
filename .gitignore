@@ -1,0 +1,9 @@
+*.zip
+*.gz
+*.tar
+*.bz2
+*.Z
+*~
+.backups
+templates_c/*
+.DS_*
