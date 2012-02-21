@@ -5,7 +5,9 @@ class TestConfiguration extends UnitTestCase {
     function testConfigLoad() {
 		global $smarty;
 		$this->assertNotNull(APP_ROOT);
+		echo "<pre>APP_ROOT=".APP_ROOT."</pre>";
 		$this->assertNotNull(APP_URL);
+		echo "<pre>APP_URL=".APP_URL."</pre>";
 		$this->assertNotNull($smarty);
     }
 }

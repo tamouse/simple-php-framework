@@ -45,8 +45,7 @@ define('APP_URL',
 	'http://' . 
 	$_SERVER['SERVER_NAME'] .
 	((isset($_SERVER['SERVER_PORT']))?':'.$_SERVER['SERVER_PORT']:'') .
-	'/' .
-	((isset($_SERVER['SCRIPT_NAME'])) ? dirname($_SERVER['SCRIPT_NAME']) . '/' : '')
+	((isset($_SERVER['SCRIPT_NAME'])) ? dirname($_SERVER['SCRIPT_NAME'])  : '')
 	);
 
 require_once('libs/Smarty.class.php');

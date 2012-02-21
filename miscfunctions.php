@@ -44,3 +44,46 @@ function display($template)
 	$smarty->assign('errors',(isset($Errors))?$Errors:array());
 	$smarty->display($template.".tpl");
 }
+
+/**
+ * Retrieve an array of directories in the $start directory
+ *
+ * @return array/boolean - arrray of directories or FALSE if error
+ * @param string $start - starting directory to retrieve from, default is current directory
+ * @param boolean $nodot - skip dot directories and files, default is true
+ * @author Tamara Temple
+ **/
+function get_directories($start=".",$nodot=true)
+{
+	global $Messages, $Errors;
+	$Messages[]='<span class="debug">$start='.$start.'</span>';
+	
+	if (!is_dir($start)) {
+		$Errors[] = "$start is not a directory!";
+		return FALSE;
+	}
+	
+	if (false === ($dh = opendir($start))) {
+		$Errors[] = "Could not open $start as a directory!";
+		return FALSE;
+	}
+
+	$dirs = array(); // initialize return value
+	
+	while (($file = readdir($dh)) !== FALSE) {
+		if ($nodot && preg_match("/^\./",$file)) {
+			continue;
+		}
+		$fqfile=$start.DIRECTORY_SEPARATOR.$file;
+		if (is_dir($fqfile)) {
+			$dirs[]=$file;
+
+		}
+	}
+	
+	closedir($dh);
+	
+	sort($dirs);
+	
+	return $dirs;
+}
